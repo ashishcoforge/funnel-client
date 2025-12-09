@@ -1,0 +1,15 @@
+export const apiEndpoints = {
+  GET_ACCOUNT_NAMES_DETAILS: "/Sfdc/GetAccountNameDetails/",
+  GET_SFDC: "/Sfdc/GetSfdcs",
+  GET_ACCOUNT_NAMES: "/Sfdc/GetAccountNames/",
+  UPDATE_ACCOUNTS: "/Sfdc/AccountDetails/",
+  UPDATE_REVENUE: "/Sfdc/UpdateRevenue",
+  UPLOAD_EXCEL: "/Excel/UploadExcel/",
+  EXPORT_EXCEL: "/Excel/ExportExcel",
+  ACCOUNT_OWNERS: "/Sfdc/GetAccountOwners/",
+  SUB_BUS: "/Sfdc/GetSubBus/",
+  GET_GM: "/Gm/GetGmDetails/",
+  EXPORT_EXCEL_GM: "/Excel/ExportExcelGM",
+  EXPORT_REVENUE_RUNRATE: "/Excel/ExportCombinedGMResults",
+  LOGIN_USER: "/Auth/Login",
+};

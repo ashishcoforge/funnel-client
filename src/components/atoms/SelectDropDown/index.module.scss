@@ -1,0 +1,12 @@
+@import "@/src/styles/variables.scss";
+
+.select {
+  min-width: 10rem;
+  font-size: 0.8rem;
+  font-weight: $font-medium;
+  border-radius: 0;
+
+  option {
+    font-weight: $font-regular;
+  }
+}

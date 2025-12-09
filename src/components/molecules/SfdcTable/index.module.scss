@@ -1,0 +1,63 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.SfdcTableContainer {
+  overflow-x: scroll;
+  scrollbar-width: none;
+  max-width: 100%; /* Adjust this value as needed */
+  margin-bottom: 1rem;
+
+  table {
+    width: 100%; /* Ensure the table takes full width of the container */
+    max-width: 100%; /* Ensure the table doesn't exceed the container's width */
+
+    th {
+      text-align: center;
+    }
+
+    th,
+    td {
+      @include border;
+      white-space: nowrap; /* Prevents text from wrapping */
+      font-size: 0.7rem;
+      font-weight: $font-medium;
+      padding: 0.5rem;
+    }
+
+    td {
+      text-align: center;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .projCell {
+        gap: 0.5rem;
+      }
+
+      input {
+        @include border;
+
+        max-width: 5rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 0;
+        font-weight: $font-medium;
+        outline: none;
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+
+        img {
+          width: 1rem;
+          margin-bottom: 0.1rem;
+        }
+      }
+    }
+  }
+}

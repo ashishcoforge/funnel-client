@@ -1,0 +1,25 @@
+@import "@/src/styles/variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background-color;
+  min-height: 100vh;
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+p {
+  margin-bottom: 0;
+}

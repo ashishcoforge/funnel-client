@@ -1,0 +1,5 @@
+@import "@/src/styles/variables.scss";
+
+@mixin border {
+  border: 1.5px solid $primary-color;
+}

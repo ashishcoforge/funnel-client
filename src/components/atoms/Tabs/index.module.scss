@@ -1,0 +1,20 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.tabs {
+  display: flex;
+
+  div {
+    @include border;
+
+    cursor: pointer;
+    padding: 0.3rem 0.75rem;
+    font-weight: $font-medium;
+  }
+
+  .active {
+    border-color: $primary-color;
+    background-color: $primary-color;
+    color: $secondary-color;
+  }
+}

@@ -1,0 +1,19 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.filterPanelContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+  gap: 1rem;
+
+  .filterInput {
+    label {
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      color: $label-color;
+      font-weight: $font-medium;
+    }
+  }
+}

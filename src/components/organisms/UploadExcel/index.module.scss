@@ -1,0 +1,55 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.UploadExcelContainer {
+  height: 100vh;
+
+  .UploadExcel {
+    height: calc(100vh - 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form {
+    width: max-content;
+
+    button {
+      width: 100%;
+    }
+
+    .input {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 1rem;
+      gap: 0.5rem;
+
+      input {
+        max-width: 6rem;
+      }
+
+      label {
+        font-weight: $font-medium;
+      }
+    }
+
+    .upload {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 1.5px $primary-color dashed;
+      padding: 1rem;
+      margin-bottom: 1rem;
+
+      input {
+        font-size: 0.8rem;
+      }
+
+      p {
+        font-weight: $font-medium;
+      }
+    }
+  }
+}

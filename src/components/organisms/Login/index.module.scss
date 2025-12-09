@@ -1,0 +1,47 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.loginContainer {
+  .loginForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 5rem);
+
+    form {
+      padding: 1rem 2rem;
+      @include border;
+      max-width: 30rem;
+      width: 100%;
+      background-color: $white;
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        color: $primary-color;
+      }
+
+      .inputGroup {
+        margin-bottom: 1rem;
+
+        label {
+          margin-bottom: 0.25rem;
+          font-weight: 500;
+          color: $primary-color;
+        }
+
+        input {
+          padding: 0.25rem 0.5rem;
+          @include border;
+          width: 100%;
+          outline: none;
+        }
+      }
+
+      button {
+        margin-top: 1.5rem;
+        color: $secondary-color;
+      }
+    }
+  }
+}

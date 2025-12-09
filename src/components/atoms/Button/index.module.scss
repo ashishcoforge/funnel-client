@@ -1,0 +1,27 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.button {
+  @include border;
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: $font-medium;
+  background-color: $primary-color;
+  color: $white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0rem;
+  font-size: 0.8rem;
+  // min-height: 2rem;
+
+  &:hover {
+    background-color: darken($primary-color, 20%);
+    color: $white;
+  }
+
+  &:active {
+    background-color: darken($primary-color, 30%);
+    color: $white;
+  }
+}

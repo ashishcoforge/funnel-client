@@ -1,0 +1,55 @@
+@import "@/src/styles/variables.scss";
+@import "@/src/styles/mixins.scss";
+
+.tableFormContainer {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .tableContainer {
+    overflow: auto;
+    max-width: 100%;
+    margin-bottom: 1rem;
+
+    table {
+      width: 100%;
+      max-width: 100%;
+
+      th {
+        text-align: center;
+      }
+
+      th,
+      td {
+        @include border;
+        white-space: nowrap; /* Prevents text from wrapping */
+        font-size: 0.7rem;
+        font-weight: $font-medium;
+        padding: 0.5rem;
+      }
+
+      td {
+        width: 100%;
+
+        div {
+          min-width: 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        input {
+          max-width: 3rem;
+          text-align: center;
+          border-radius: 0;
+          @include border;
+          font-weight: $font-medium;
+          outline: none;
+        }
+      }
+    }
+  }
+}
