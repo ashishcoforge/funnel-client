@@ -1,4 +1,5 @@
-name: Deploy Next.js (Windows App Service, 32-bit, TS server)
+
+name: Build and deploy Next.js to Azure Web App (Windows, 32-bit, Node 22)
 
 on:
   push:
@@ -6,14 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: windows-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -25,7 +28,13 @@ jobs:
       - name: Build Next and compile TS server
         run: npm run build
 
-      # Prepare minimal artifact for App Service (standalone + server)
+      # Prepare minimal deploy artifact:
+      # - web.config
+      # - dist/server.js (compiled)
+      # - .next/standalone (runtime)
+      # - .next/static (assets)
+      # - public (if present)
+      # - package.json
       - name: Prepare artifact
         run: |
           mkdir deploy
@@ -36,9 +45,26 @@ jobs:
           if exist public xcopy public deploy\public\ /E /I /Y
           copy package.json deploy\
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-deploy
+          path: deploy
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-deploy
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'sfdcfrontend'
+          app-name: 'sfdcfrontend'              # <-- your app name
+          slot-name: 'Production'
+          package: .                            # deploy the downloaded artifact contents
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4FBA28C70ED64ECA8AB63EDBE40522CE }}
-          package: deploy
