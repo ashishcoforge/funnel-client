@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build && tsc -p tsconfig.server.json",
     "start": "node dist/server.js",
-    "lint": "next lint"
+    "test": "echo \"(optional)\""
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

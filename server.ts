@@ -10,11 +10,9 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   createServer((req, res) => {
-    if (!req || !res) return;
-    const parsedUrl = parse(req.url ?? "/", true);
+    const parsedUrl: any = parse(req.url ?? "/", true);
     handle(req, res, parsedUrl);
   }).listen(port, () => {
-    // App Service injects PORT; don’t hardcode 3000
     console.log(`> Next.js server running on port ${port}`);
   });
 });
