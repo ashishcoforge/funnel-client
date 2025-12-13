@@ -1,62 +1,55 @@
-name: Build and deploy Next.js to Azure Web App (Windows, 32-bit, Node 22)
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - sfdcfrontend
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: ''
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Next and compile TS server
-        run: npm run build
-
-      - name: Prepare artifact
-        shell: cmd
+      - name: npm install, build, and test
         run: |
-          mkdir deploy
-          copy web.config deploy\
-          xcopy dist deploy\dist\ /E /I /Y
-          xcopy .next\standalone deploy\ /E /I /Y
-          xcopy .next\static deploy\.next\static\ /E /I /Y
-          if exist public xcopy public deploy\public\ /E /I /Y
-          copy package.json deploy\
-      - name: Upload artifact
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+      
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: nextjs-deploy
-          path: deploy
+          name: node-app
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
-
+    
     steps:
-      - name: Download artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: nextjs-deploy
-
-      - name: Deploy to Azure Web App
+          name: node-app
+      
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'sfdcfrontend'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EA562B456D7646A7B53C5ABB2BF3B942 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2D3A60EBA49A4F5A86222C35258EB147 }}
